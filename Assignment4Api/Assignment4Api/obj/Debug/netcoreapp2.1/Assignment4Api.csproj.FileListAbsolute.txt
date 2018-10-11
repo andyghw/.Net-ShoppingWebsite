@@ -1,0 +1,14 @@
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\bin\Debug\netcoreapp2.1\Assignment4Api.deps.json
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\bin\Debug\netcoreapp2.1\Assignment4Api.runtimeconfig.json
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\bin\Debug\netcoreapp2.1\Assignment4Api.runtimeconfig.dev.json
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\bin\Debug\netcoreapp2.1\Assignment4Api.dll
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\Assignment4Api.csprojAssemblyReference.cache
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\Assignment4Api.csproj.CoreCompileInputs.cache
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\Assignment4Api.RazorAssemblyInfo.cache
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\Assignment4Api.RazorAssemblyInfo.cs
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\Assignment4Api.AssemblyInfoInputs.cache
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\Assignment4Api.AssemblyInfo.cs
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\Assignment4Api.RazorTargetAssemblyInfo.cache
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\bin\Debug\netcoreapp2.1\Assignment4Api.pdb
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\Assignment4Api.dll
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\Assignment4Api.pdb
