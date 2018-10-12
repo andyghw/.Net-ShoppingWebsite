@@ -8,14 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Assignment4Api.MySqlConnector;
 using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 
 namespace Assignment4Api.Models
 {
     public class ProductService
     {
+        [JsonIgnore]
         public readonly AppDb Db;
 
-        public ProductService(AppDb db=null)
+        public ProductService(AppDb db)
         {
             Db = db;
         }

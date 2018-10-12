@@ -6,12 +6,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Assignment4Api.MySqlConnector;
 using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 
 namespace Assignment4Api.Models
 {
     public class UserService
     {
-        public readonly AppDb Db;
+        [JsonIgnore]
+        public AppDb Db { get; set; }
+
         public UserService(AppDb db)
         {
             Db = db;

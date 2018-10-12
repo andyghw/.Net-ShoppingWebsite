@@ -12,36 +12,43 @@ namespace Assignment4Api.Controllers
     public class UserController : Controller
     {
         private readonly UserService US;
+        private readonly AppDb Db;
 
-        public UserController(UserService us)
+        //Autowired
+        public UserController(UserService us, AppDb db)
         {
             US = us;
+            Db = db;
         }
 
         [HttpPost]
-        [Route("findUser")]
-        public async Task<IActionResult> Login(string email,string password)
+        [Route("Login")]
+        public async Task<IActionResult> Login(string email, string password)
         {
-            using (var db = new AppDb())
+            using(Db)
             {
-                await db.Connection.OpenAsync();
-                var result = await US.FindOneAsync(email,password);
+                await Db.Connection.OpenAsync();
+                var result = await US.FindOneAsync(email, password);
+                if (result == null)
+                {
+                    return new NotFoundResult();
+                }
                 return new OkObjectResult(result);
             }
         }
 
         [HttpPost]
-        [Route("register")]
-        public async void Register(string email, string username, string password)
+        [Route("Register")]
+        public async Task Register(string email, string username, string password)
         {
-            using (var db = new AppDb())
+            using(Db)
             {
-                await db.Connection.OpenAsync();
-                var user=new User(db)
+                await Db.Connection.OpenAsync();
+                var user = new User(Db)
                 {
-                    Email=email,
-                    Username=username,
-                    Password=password
+                    Email = email,
+                    Username = username,
+                    Password = password
                 };
                 await user.InsertAsync();
             }

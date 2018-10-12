@@ -16,15 +16,20 @@ namespace Assignment4Api.Models
         public string Password { get; set; }
         public string Email { get; set; }
         public List<Order> Orders { get; set; }
+        public List<Item> Cart { get; set; }
 
         [JsonIgnore]
         public AppDb Db { get; set; }
 
-        public User() { }
+        public User() {
+            Orders = new List<Order>();
+            Cart = new List<Item>();
+        }
         public User(AppDb db=null)
         {
             Db = db;
             Orders = new List<Order>();
+            Cart = new List<Item>();
         }
 
         public async Task InsertAsync()

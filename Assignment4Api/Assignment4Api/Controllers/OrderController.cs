@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Assignment4Api.Models;
 using Assignment4Api.Models.Services;
+using Assignment4Api.MySqlConnector;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,40 +15,48 @@ namespace Assignment4Api.Controllers
     public class OrderController : Controller
     {
         private readonly OrderService OS;
+        private readonly AppDb Db;
 
-        public OrderController(OrderService os)
+        public OrderController(OrderService os,AppDb db)
         {
             OS = os;
+            Db = db;
         }
 
         [HttpPost]
-        [Route("addOrder")]
+        [Route("AddOrder")]
         public async Task AddOrder([FromBody]List<Item> orderItems)
         {
-            User user = new User
+            using (Db)
             {
-                Id = 1,
-                Username = "andyghw",
-                Password = "19950116",
-                Email = "guo.hanw@husky.neu.edu",
-                Orders = new List<Order>()
-            };
-            await OS.AddOrder(orderItems, user);
+                await Db.Connection.OpenAsync();
+                User user = new User(Db)
+                {
+                    Id = 1,
+                    Username = "andyghw",
+                    Password = "19950116",
+                    Email = "guo.hanw@husky.neu.edu"
+                };
+                await OS.AddOrder(orderItems, user);
+            }
         }
 
         [HttpDelete]
-        [Route("deleteOrder/{orderId}")]
+        [Route("DeleteOrder/{orderId}")]
         public async Task DeleteOrder(int orderId)
         {
-            User user = new User
+            using (Db)
             {
-                Id = 1,
-                Username = "andyghw",
-                Password = "19950116",
-                Email = "guo.hanw@husky.neu.edu",
-                Orders = new List<Order>()
-            };
-            await OS.DeleteOrder(orderId);
+                await Db.Connection.OpenAsync();
+                User user = new User
+                {
+                    Id = 1,
+                    Username = "andyghw",
+                    Password = "19950116",
+                    Email = "guo.hanw@husky.neu.edu"
+                };
+                await OS.DeleteOrder(orderId);
+            }
         }
     }
 }

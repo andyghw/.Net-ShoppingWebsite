@@ -25,7 +25,6 @@ namespace Assignment4Api.Models.Services
         {
             Order order = new Order(orderItems);
             MySqlConnection conn = Db.Connection;
-            await conn.OpenAsync();
             var cmd = conn.CreateCommand() as MySqlCommand;
             //Transaction
             using (IDbTransaction tran = conn.BeginTransaction())
@@ -63,8 +62,6 @@ namespace Assignment4Api.Models.Services
         public async Task DeleteOrder(int orderId)
         {
             MySqlConnection conn = Db.Connection;
-
-            await conn.OpenAsync();
             var cmd = conn.CreateCommand() as MySqlCommand;
             //Transaction
             using (IDbTransaction tran = conn.BeginTransaction())

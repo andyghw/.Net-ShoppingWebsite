@@ -12,20 +12,26 @@ namespace Assignment4Api.Controllers
     public class ProductController : Controller
     {
         private readonly ProductService PS;
+        private readonly AppDb Db;
 
-        public ProductController(ProductService ps)
+        public ProductController(ProductService ps,AppDb db)
         {
-            PS=ps;
+            PS = ps;
+            Db = db;
         }
 
         [HttpGet]
         [Route("Search")]
         public async Task<IActionResult> SearchProducts(string keywords)
         {
-            using (var db = new AppDb())
+            using(Db)
             {
-                await db.Connection.OpenAsync();
+                await Db.Connection.OpenAsync();
                 var result = await PS.SearchByKeyword(keywords);
+                if (result == null)
+                {
+                    return new NotFoundResult();
+                }
                 return new OkObjectResult(result);
             }
         }
