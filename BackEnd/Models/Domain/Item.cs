@@ -14,5 +14,7 @@ namespace Assignment4Api.Models
         public int Num { get; set; }
         public double Price { get; set; }
         public string Img { get; set; }
+        public int OrderId { get; set; }
+        public long UserId { get; set; }
     }
 }

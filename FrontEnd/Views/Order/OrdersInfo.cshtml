@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "OrdersInfo";
+}
+
+<div class="row">
+    <div class="col-lg-2"></div>
+    <h1 class="col-lg-10">Orders</h1>
+</div>
+<div class="container">
+    <div class="col-lg-4"></div>
+    <table class="col-lg-4">
+        <tr class="row"><th class="col-lg-4">OrderId</th><th class="col-lg-4">Date Placed</th><th class="col-lg-4">View Details</th></tr>
+        @foreach (var order in ViewBag.Orders)
+        {
+            <tr class="row"><td class="col-lg-4">@order.Id</td><td class="col-lg-4">@order.Created_at</td><td class="col-lg-4"><a href="/Order/OrderDetail/@order.Id" class="btn btn-primary" value="@order.Id" id="detailBtn_@order.Id">Details</a></td></tr>
+        }
+    </table>
+    <div class="col-lg-4"></div>
+</div>
+

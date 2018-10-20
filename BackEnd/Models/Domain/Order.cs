@@ -11,14 +11,16 @@ namespace Assignment4Api.Models
     {
         public int Id { get; set; }
         public DateTime Created_at { get; set; }
-        public List<Item> OrderItem { get; set; }
+        public string Status { get; set; }
+        public int UserId { get; set; }
         [JsonIgnore]
         public AppDb Db { get; set; }
+
+        public Order() { }
 
         public Order(List<Item> orderItems,AppDb db=null)
         {
             Db = db;
-            OrderItem = orderItems;
             Created_at = DateTime.Now;
         }
     }

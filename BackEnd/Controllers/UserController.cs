@@ -53,5 +53,22 @@ namespace Assignment4Api.Controllers
                 await user.InsertAsync();
             }
         }
+
+        [HttpPut]
+        [Route("UpdateAccount")]
+        public async Task UpdateAccount(string email, string username, string password)
+        {
+            using (Db)
+            {
+                await Db.Connection.OpenAsync();
+                var user = new User(Db)
+                {
+                    Email = email,
+                    Username = username,
+                    Password = password
+                };
+                await user.UpdateAsync();
+            }
+        }
     }
 }

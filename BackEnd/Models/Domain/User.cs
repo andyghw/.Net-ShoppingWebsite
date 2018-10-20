@@ -43,7 +43,7 @@ namespace Assignment4Api.Models
         public async Task UpdateAsync()
         {
             var cmd = Db.Connection.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"UPDATE users SET (password = @password, email = @email) WHERE email = @email;";
+            cmd.CommandText = @"UPDATE users SET username=@username,password = @password, email = @email WHERE email = @email;";
             BindUserParams(cmd);
             await cmd.ExecuteNonQueryAsync();
         }

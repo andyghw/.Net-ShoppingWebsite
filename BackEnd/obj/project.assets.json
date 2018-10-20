@@ -12371,9 +12371,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Study\\GuoHanwen\\Master\\Info6250\\Assignment4Api\\Assignment4Api\\Assignment4Api.csproj",
-      "projectName": "Assignment4Api",
-      "projectPath": "D:\\Study\\GuoHanwen\\Master\\Info6250\\Assignment4Api\\Assignment4Api\\Assignment4Api.csproj",
+      "projectUniqueName": "D:\\Study\\GuoHanwen\\Master\\Info6250\\Assignment4Api\\Assignment4Api\\ShoppingWebsiteBack.csproj",
+      "projectName": "ShoppingWebsiteBack",
+      "projectPath": "D:\\Study\\GuoHanwen\\Master\\Info6250\\Assignment4Api\\Assignment4Api\\ShoppingWebsiteBack.csproj",
       "packagesPath": "C:\\Users\\andyg\\.nuget\\packages\\",
       "outputPath": "D:\\Study\\GuoHanwen\\Master\\Info6250\\Assignment4Api\\Assignment4Api\\obj\\",
       "projectStyle": "PackageReference",

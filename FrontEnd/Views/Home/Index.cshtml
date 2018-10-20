@@ -1,4 +1,6 @@
-﻿<div id="myCarousel" class="carousel slide" data-ride="carousel">
+﻿@page
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -21,7 +23,7 @@
                 <div class="carousel-caption text-left">
                     <h1>Turn over a new look</h1>
                     <p>Creating an inviting space with warm decor & cozy accents.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Read more</a></p>
+                    <p><a class="btn btn-lg btn-primary" role="button">Read more</a></p>
                 </div>
             </div>
         </div>
@@ -56,11 +58,12 @@
     <hr class="featurette-divider">
     <div class="row featurette">
         <div class="col-md-7">
-            <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <a href="/Product/ProductDetail/@ViewBag.Products[0].Id"><h2 class="featurette-heading">@ViewBag.Products[0].Name</h2></a>
+            <p class="lead">$@ViewBag.Products[0].Price</p>
+            <p class="lead">$@ViewBag.Products[0].Text</p>
         </div>
         <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+            <a href="/Product/ProductDetail/@ViewBag.Products[0].Id"><img src="@ViewBag.Products[0].Imgs[0]" width="300" height="400"></a>
         </div>
     </div>
 
@@ -68,11 +71,12 @@
 
     <div class="row featurette">
         <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <a href="/Product/ProductDetail/@ViewBag.Products[1].Id"><h2 class="featurette-heading">@ViewBag.Products[1].Name</h2></a>
+            <p class="lead">$@ViewBag.Products[1].Price</p>
+            <p class="lead">$@ViewBag.Products[1].Text</p>
         </div>
         <div class="col-md-5 order-md-1">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+            <a href="/Product/ProductDetail/@ViewBag.Products[1].Id"><img src="@ViewBag.Products[1].Imgs[0]" width="300" height="400"></a>
         </div>
     </div>
 
@@ -80,16 +84,33 @@
 
     <div class="row featurette">
         <div class="col-md-7">
-            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <a href="/Product/ProductDetail/@ViewBag.Products[2].Id"><h2 class="featurette-heading">@ViewBag.Products[2].Name</h2></a>
+            <p class="lead">$@ViewBag.Products[2].Price</p>
+            <p class="lead">$@ViewBag.Products[2].Text</p>
         </div>
         <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
+            <a href="/Product/ProductDetail/@ViewBag.Products[2].Id"><img src="@ViewBag.Products[2].Imgs[0]" width="300" height="400"></a>
+</div>
     </div>
 
     <hr class="featurette-divider">
-
+    @ViewBag.Username
     <!-- /END THE FEATURETTES -->
 
 </div><!-- /.container -->
+
+<script type="text/javascript">
+    $(function () {
+        var username="@ViewBag.Username";
+        if (username=="") {
+            $("#log").show();
+            $("#menu").hide();
+        }
+        else {
+            $("#log").hide();
+            $("#menu").show();
+        }
+    });
+</script>
+
+

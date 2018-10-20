@@ -28,14 +28,14 @@ namespace Assignment4Api.Controllers
             using (Db)
             {
                 await Db.Connection.OpenAsync();
-                User user = new User(Db)
-                {
-                    Id = 1,
-                    Username = "andyghw",
-                    Password = "19950116",
-                    Email = "guo.hanw@husky.neu.edu"
-                };
-                await CS.AddCartItem(user,item);
+                //User user = new User(Db)
+                //{
+                //    Id = 1,
+                //    Username = "andyghw",
+                //    Password = "19950116",
+                //    Email = "guo.hanw@husky.neu.edu"
+                //};
+                await CS.AddCartItem(item);
             }
         }
 
@@ -46,14 +46,40 @@ namespace Assignment4Api.Controllers
             using (Db)
             {
                 await Db.Connection.OpenAsync();
-                User user = new User(Db)
-                {
-                    Id = 1,
-                    Username = "andyghw",
-                    Password = "19950116",
-                    Email = "guo.hanw@husky.neu.edu"
-                };
                 await CS.DeleteCartItem(cartItemId);
+            }
+        }
+
+        [HttpDelete]
+        [Route("CleanCart/{userId}")]
+        public async Task DeleteAllCartItem(int userId)
+        {
+            using (Db)
+            {
+                await Db.Connection.OpenAsync();
+                await CS.CleanCartItem(userId);
+            }
+        }
+
+        [HttpPost]
+        [Route("CheckCartItem")]
+        public bool CheckCartItem([FromBody]Item item)
+        {
+            using (Db)
+            {
+                Db.Connection.Open();
+                return CS.CheckCartItem(item);
+            }
+        }
+
+        [HttpPost]
+        [Route("UpdateAddCartItem")]
+        public async Task UpdateAddCartItem([FromBody]Item item)
+        {
+            using (Db)
+            {
+                Db.Connection.Open();
+                await CS.UpdateAddCartItem(item);
             }
         }
 
@@ -68,20 +94,13 @@ namespace Assignment4Api.Controllers
             }
         }
 
-        [Route("GetCart")]
-        public async Task<IActionResult> GetCartContent()
+        [Route("GetCart/{userId}")]
+        public async Task<IActionResult> GetCartContent(string userId)
         {
             using (Db)
             {
                 await Db.Connection.OpenAsync();
-                User user = new User(Db)
-                {
-                    Id = 1,
-                    Username = "andyghw",
-                    Password = "19950116",
-                    Email = "guo.hanw@husky.neu.edu"
-                };
-                var result=await CS.GetCartContentAsync(user);
+                var result=await CS.GetCartContentAsync(userId);
                 if (result == null)
                 {
                     return new NotFoundResult();

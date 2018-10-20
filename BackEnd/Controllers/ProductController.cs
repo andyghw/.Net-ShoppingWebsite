@@ -35,5 +35,53 @@ namespace Assignment4Api.Controllers
                 return new OkObjectResult(result);
             }
         }
+
+        [HttpGet]
+        [Route("FindLastThree")]
+        public async Task<IActionResult> FindLastThree()
+        {
+            using (Db)
+            {
+                await Db.Connection.OpenAsync();
+                var result = await PS.GetLastThree();
+                if (result == null)
+                {
+                    return new NotFoundResult();
+                }
+                return new OkObjectResult(result);
+            }
+        }
+
+        [HttpGet]
+        [Route("FindByType/{type}")]
+        public async Task<IActionResult> FindByType(string type)
+        {
+            using (Db)
+            {
+                await Db.Connection.OpenAsync();
+                var result = await PS.FindByType(type);
+                if (result == null)
+                {
+                    return new NotFoundResult();
+                }
+                return new OkObjectResult(result);
+            }
+        }
+
+        [HttpGet]
+        [Route("FindById/{id}")]
+        public async Task<IActionResult> FindById(string id)
+        {
+            using (Db)
+            {
+                await Db.Connection.OpenAsync();
+                var result = await PS.FindById(id);
+                if (result == null)
+                {
+                    return new NotFoundResult();
+                }
+                return new OkObjectResult(result);
+            }
+        }
     }
 }

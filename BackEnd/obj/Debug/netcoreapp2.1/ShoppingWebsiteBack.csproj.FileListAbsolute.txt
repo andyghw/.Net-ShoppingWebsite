@@ -1,0 +1,14 @@
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\bin\Debug\netcoreapp2.1\ShoppingWebsiteBack.deps.json
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\bin\Debug\netcoreapp2.1\ShoppingWebsiteBack.runtimeconfig.json
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\bin\Debug\netcoreapp2.1\ShoppingWebsiteBack.runtimeconfig.dev.json
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\bin\Debug\netcoreapp2.1\ShoppingWebsiteBack.dll
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\bin\Debug\netcoreapp2.1\ShoppingWebsiteBack.pdb
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\ShoppingWebsiteBack.csprojAssemblyReference.cache
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\ShoppingWebsiteBack.csproj.CoreCompileInputs.cache
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\ShoppingWebsiteBack.RazorAssemblyInfo.cache
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\ShoppingWebsiteBack.RazorAssemblyInfo.cs
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\ShoppingWebsiteBack.AssemblyInfoInputs.cache
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\ShoppingWebsiteBack.AssemblyInfo.cs
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\ShoppingWebsiteBack.RazorTargetAssemblyInfo.cache
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\ShoppingWebsiteBack.dll
+D:\Study\GuoHanwen\Master\Info6250\Assignment4Api\Assignment4Api\obj\Debug\netcoreapp2.1\ShoppingWebsiteBack.pdb

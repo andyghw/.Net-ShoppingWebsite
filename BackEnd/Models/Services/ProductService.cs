@@ -26,7 +26,7 @@ namespace Assignment4Api.Models
         {
             var cmd = Db.Connection.CreateCommand() as MySqlCommand;
             string[] keywords = str.Split(" ");
-            StringBuilder sb = new StringBuilder(@"SELECT name,price,url,text,type,img,products.id FROM products INNER JOIN imgs ON products.id=imgs.productId WHERE ");
+            StringBuilder sb = new StringBuilder(@"SELECT name,price,url,text,type,img,products.id FROM products INNER JOIN (select * from imgs where img in (select min(img) from imgs group by productId)) i ON products.id=i.productId WHERE ");
             for (int i = 0; i < keywords.Length; i++)
             {
                 if (i == keywords.Length - 1)
@@ -47,6 +47,32 @@ namespace Assignment4Api.Models
             }
             var result = await ReadAllAsync(await cmd.ExecuteReaderAsync());
             return result;
+        }
+
+        public async Task<List<Product>> GetLastThree()
+        {
+            var cmd = Db.Connection.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT name,price,url,text,type,img,products.id FROM products INNER JOIN (select * from imgs where img in (select min(img) from imgs group by productId)) i ON products.id=i.productId LIMIT 3";
+            var result = await ReadAllAsync(await cmd.ExecuteReaderAsync());
+            return result;
+        }
+
+        public async Task<List<Product>> FindByType(string type)
+        {
+            var cmd = Db.Connection.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT name,price,url,text,type,img,products.id FROM products INNER JOIN (select * from imgs where img in (select min(img) from imgs group by productId)) i ON products.id=i.productId WHERE type=@type";
+            cmd.Parameters.AddWithValue("@type",type);
+            var result = await ReadAllAsync(await cmd.ExecuteReaderAsync());
+            return result;
+        }
+
+        public async Task<Product> FindById(string id)
+        {
+            var cmd = Db.Connection.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT name,price,url,text,type,img,products.id FROM products INNER JOIN (select * from imgs where img in (select min(img) from imgs group by productId)) i ON products.id=i.productId WHERE products.id=@id";
+            cmd.Parameters.AddWithValue("@id", id);
+            var result = await ReadAllAsync(await cmd.ExecuteReaderAsync());
+            return result[0] == null?null:result[0];
         }
 
         private async Task<List<Product>> ReadAllAsync(DbDataReader reader)

@@ -23,6 +23,37 @@ namespace Assignment4Api.Controllers
             Db = db;
         }
 
+        [Route("GetOrder/{userId}")]
+        public async Task<List<Order>> GetOrder(string userId)
+        {
+            using (Db)
+            {
+                await Db.Connection.OpenAsync();
+                return await OS.GetOrder(userId);
+            }
+        }
+
+        [Route("GetOrderDetail/{orderId}")]
+        public async Task<List<Item>> GetOrderDetail(string orderId)
+        {
+            using (Db)
+            {
+                await Db.Connection.OpenAsync();
+                return await OS.GetOrderitemsById(int.Parse(orderId));
+            }
+        }
+
+        [Route("GetMostRecentOrder/{userId}")]
+        public async Task<List<Item>> GetMostRecentOrder(string userId)
+        {
+            using (Db)
+            {
+                await Db.Connection.OpenAsync();
+                var orderId = await OS.GetMostRecentOrderId(userId);
+                return await OS.GetOrderitemsById(orderId);
+            }
+        }
+
         [HttpPost]
         [Route("AddOrder")]
         public async Task AddOrder([FromBody]List<Item> orderItems)
@@ -56,6 +87,17 @@ namespace Assignment4Api.Controllers
                     Email = "guo.hanw@husky.neu.edu"
                 };
                 await OS.DeleteOrder(orderId);
+            }
+        }
+
+        [HttpPut]
+        [Route("UpdateOrder/{orderId}")]
+        public async Task UpdateOrder(int orderId)
+        {
+            using (Db)
+            {
+                await Db.Connection.OpenAsync();
+                await OS.UpdateOrder(orderId);
             }
         }
     }

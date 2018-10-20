@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewData["Title"] = "ViewCart";
+}
+@using System.Collections;
+@using Newtonsoft.Json;
+
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<link href="https://getbootstrap.com/docs/4.1/examples/blog/blog.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+
+<div class="row">
+    <div class="col-lg-2"></div>
+    <h1 class="col-lg-10">Carts</h1>
+</div>
+@{
+    var totalPrice = 0.0;
+}
+<br><br>
+@foreach (var item in ViewBag.Items)
+{
+    var sumPrice = item.Price * item.Num;
+    totalPrice += sumPrice;
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <h3 class="mb-0">@item.Title</h3>
+                    <strong class="d-inline-block mb-2">Num: @item.Num</strong>
+                    <strong class="d-inline-block mb-2 text-primary">Price: $@sumPrice</strong>
+                    <br>
+                    <div class="mb-0 row">
+                        <input class="col-md-3" id="count_@item.Id" value="@item.Num" required>
+                        <button class="btn btn-success col-md-3" id="update_@item.Id" value="@item.Id">Update cart</button>
+                        <div class="col-md-3"></div>
+                        <button class="btn btn-danger col-md-3" id="remove_@item.Id">Remove</button>
+                    </div>
+                </div>
+                <img class="card-img-right flex-auto d-none d-lg-block" src="@item.Img" width="200" height="300">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $("#update_@item.Id").click(function () {
+            var count = $("#count_@item.Id").val();
+            if (count == null||count=="") {
+                alert("Please input the number first.");
+                return;
+            }
+            if (!checkNum(count)) {
+                alert("Please input a valid number.");
+                return;
+            }
+            count = parseInt(count);
+            var item = {"Id":@item.Id,"Title":"@item.Title","Num":count,"Price":@item.Price,"Img":"@item.Img"};
+            console.log(count);
+            console.log(item);
+            var json = JSON.stringify(item);
+            console.log(json);
+            $.ajax({
+                type: 'PUT',
+                url: '/Cart/UpdateCart',
+                data: json,
+                dataType: "json",
+                contentType: "application/json",
+                success: function (data) {
+                    location.reload(true);
+                }
+            });
+        });
+
+        $("#remove_@item.Id").click(function () {
+            $.ajax({
+                type: 'Delete',
+                url: '/Cart/DeleteCart/@item.Id',
+                success: function (data) {
+                    location.reload(true);
+                }
+            });
+        });
+
+        function checkNum(input) {
+            var reg = /^[0-9]+.?[0-9]*$/;
+            var num = input;
+            if (!reg.test(num)) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    </script>
+}
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-2"><h2>Total Price: $@totalPrice</h2></div>
+    <div class="col-lg-4"></div>
+    <button class="btn btn-primary col-lg-2" id="placeOrder">Checkout</button>
+    <div class="col-lg-2"></div>
+</div>
+<script type="text/javascript">
+    $("#placeOrder").click(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/Order/AddOrder',
+            data: JSON.stringify(@ViewBag.ItemsJson),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data, res) {
+                    if (data == true) {
+                        alert("Order Placed!");
+                        window.location.href ="/Order/GetMostRecentOrder";
+                    }
+                }
+        })
+    });
+</script>
+
+
+
+
